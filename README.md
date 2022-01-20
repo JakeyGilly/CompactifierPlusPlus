@@ -27,7 +27,7 @@ There will be 3 stages of compactness that Compacter can handle
 * Compact (level 2)
 * Annoyingly compact (level 3)
 
-You can find out more about the stages [here](http://github.com/JakeyGilly/CompactifierPlusPlus/blob/master/stages.md)
+You can find out more about the stages [here](http://github.com/JakeyGilly/CompactifierPlusPlus/blob/main/stages.md)
 
 ### Features
 * Compact Formatting
