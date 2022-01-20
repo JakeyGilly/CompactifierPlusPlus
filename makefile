@@ -1,13 +1,18 @@
+ifeq ($(OS),Windows_NT)
+    TARGET = Compactifier.exe
+else
+    TARGET = Compactifier.out
+endif
+
 OBJS	= main.o fileio.o formatting/global.o formatting/languages/python/formatter.o
 SOURCE	= main.cpp fileio.cpp formatting/global.cpp formatting/languages/python/formatter.cpp
 HEADER	= headers/fileio.hpp headers/formatting.hpp
-OUT	= a.out
 CC	 = g++
 FLAGS	 = -g -c -Wall
 LFLAGS	 = 
 
 all: $(OBJS)
-	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+	$(CC) -g $(OBJS) -o $(TARGET) $(LFLAGS)
 	rm -f $(OBJS)
 
 main.o: main.cpp
@@ -23,4 +28,4 @@ formatterpy.o: formatting/languages/python/formatter.cpp
 	$(CC) $(FLAGS) formatting/languages/python/formatter.cpp -std=c++17
 
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm -f $(OBJS) $(TARGET)
