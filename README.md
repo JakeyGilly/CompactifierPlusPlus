@@ -24,7 +24,10 @@ Next you execute the Compactifier with the file needed to compact and the compac
 Compactifier.exe /path/to/file 1 (Windows)
 ```
 
-Made by Jake Gillman
+## Contributing
+Contributions of all types are welcome and encouraged. You can help fix bugs, optimize existing code, add good practices and more. Just open a pull request saying what you have changed or fixed and I will look into it.
+Look at the CodeCompactor project board or the future Todo section below to find what would help me.
+
 
 ## Future Todo
 ### Stages
@@ -38,3 +41,6 @@ You can find out more about the stages [here](http://github.com/JakeyGilly/Compa
 ### Features
 * Compact Formatting
 * Debug Mode
+
+
+Made by Jake Gillman
