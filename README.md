@@ -1,4 +1,10 @@
-# Compactifier
+# CompactifierPlusPlus
+![GitHub Repo stars](https://img.shields.io/github/stars/JakeyGilly/CompactifierPlusPlus?style=social)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+![GitHub last commit](https://img.shields.io/github/last-commit/JakeyGilly/CompactifierPlusPlus)
+![GitHub issues](https://img.shields.io/github/issues-raw/JakeyGilly/CompactifierPlusPlus)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/JakeyGilly/CompactifierPlusPlus)
+
 ## About
 This project is designed to compact code in Python (more languages coming soon)
 
@@ -7,7 +13,7 @@ This project was inteded to be made in The C Language but I decided to switch to
 This project is still in development and I am working on it.
 
 ## Usage
-You can clone this repository using ```git clone https://github.com/JakeyGilly/CompactifierPlusPLus.git``` or grab a release from the releases tab.
+You can clone this repository using ```git clone https://github.com/JakeyGilly/CompactifierPlusPlus.git``` or grab a release from the releases tab.
 
 Build the project using ```make```.
 
@@ -27,7 +33,7 @@ There will be 3 stages of compactness that Compacter can handle
 * Compact (level 2)
 * Annoyingly compact (level 3)
 
-You can find out more about the stages [here](http://github.com/JakeyGilly/CompactifierPlusPlus/blob/master/stages.md)
+You can find out more about the stages [here](http://github.com/JakeyGilly/CompactifierPlusPlus/blob/main/stages.md)
 
 ### Features
 * Compact Formatting
