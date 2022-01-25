@@ -1,30 +1,31 @@
 #include <string>
 #include <iostream>
+#include <vector>
 #include "../headers/formatting.hpp"
 
-std::string removeSingleAnn(std::string fileContents, std::string ann) {
-    size_t pos;
-    int newline;
-    while ((pos = fileContents.find(ann, 0)) != -1) {
-        newline = fileContents.find("\n", pos);
-        if (newline == -1) {
-            fileContents.erase(pos, fileContents.length() - pos);
-        } else {
-            fileContents.erase(pos, newline - pos);
+void removeSingleAnn(std::vector<std::string> &fileContents, std::string ann) {
+    for (int i = 0; i < fileContents.size(); i++) {
+        if (fileContents[i].find(ann) != -1) {
+            fileContents[i] = fileContents[i].substr(0, fileContents[i].find(ann));
         }
     }
-    return fileContents;
 }
-std::string removeMultiAnn(std::string fileContents, std::string ann) {
+void removeMultiAnn(std::vector<std::string> &fileContents, std::string ann) {
     size_t pos;
-    int end;
-    while ((pos = fileContents.find(ann, 0)) != -1) {
-        end = fileContents.find(ann, pos + ann.length());
-        if (end == -1) {
-            fileContents.erase(pos, fileContents.length() - pos);
-        } else {
-            fileContents.erase(pos, end - pos + ann.length());
+    size_t pos2;
+    for (int i = 0; i < fileContents.size(); i++) {
+        if ((pos=fileContents[i].find(ann)) != -1) {
+            if ((pos2=fileContents[i].find(ann, pos + ann.length())) != -1) {
+                fileContents[i] = fileContents[i].substr(0, pos) + fileContents[i].substr(pos2 + ann.length());
+            } else {
+                fileContents[i] = fileContents[i].substr(0, pos);
+                i++;
+                while ((pos=fileContents[i].find(ann)) == -1) {
+                    fileContents.erase(fileContents.begin() + i);
+                    i++;
+                }
+                fileContents[i] = fileContents[i].substr(pos + ann.length());
+            }
         }
     }
-    return fileContents;
 }

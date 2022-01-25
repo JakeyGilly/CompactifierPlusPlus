@@ -1,9 +1,9 @@
 #pragma once
 
 // GLOBAL
-std::string removeSingleAnn(std::string, std::string);
-std::string removeMultiAnn(std::string, std::string);
+void removeSingleAnn(std::vector<std::string>&, std::string);
+void removeMultiAnn(std::vector<std::string>&, std::string);
 
 // PYTHON
-std::string pyRemoveAnnatations(std::string);
-std::string pyFormat(std::string);
+void pyRemoveAnnatations(std::vector<std::string>&);
+void pyFormat(std::vector<std::string>&);

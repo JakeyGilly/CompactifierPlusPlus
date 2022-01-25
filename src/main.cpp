@@ -19,15 +19,16 @@ bool debug = false;
 		}
 	}
 	if (!!file.compare("")) {
-		std::string fileContents = readFile(file);
+		std::vector<std::string> fileContents = readFile(file);
+        if (fileContents.empty()) {
+            std::cout << "File not found" << std::endl;
+            return 1;
+        }
 		std::cout << "Opened File " << file << std::endl << "Type " << filetype(file) << std::endl << "File size: " << fileSize(file) << " Bytes" << std::endl;
         // Compaction begins here
         if (!filetype(file).compare(".py")) {
-//            struct indentation indent = getIndent(fileContents);
-            // std::cout << fileContents << std::endl;
-           fileContents = pyRemoveAnnatations(fileContents);
-           fileContents = pyFormat(fileContents);
-           std::cout << fileContents << std::endl;
+           pyRemoveAnnatations(fileContents);
+           pyFormat(fileContents);
         } else {
             std::cout << "File type not supported" << std::endl;
         }
@@ -44,7 +45,3 @@ bool debug = false;
         std::cout << "usage stuff..." << std::endl;
     }
 }
-
-typedef struct indentation {
-	int* indent, lenindent;
-} indentation;
