@@ -15,14 +15,23 @@ This project is still in development and I am working on it.
 ## Usage
 You can clone this repository using ```git clone https://github.com/JakeyGilly/CompactifierPlusPlus.git``` or grab a release from the releases tab.
 
-Build the project using ```make```.
+Build the project using 
+```
+$ make
+```
 
 Next you execute the Compactifier with the file needed to compact and the compact level as the parameters using 
 ```
-./Compactifier.out /path/to/file 1 (Linux/Mac)
+./Compactifier.out -f /path/to/file (Linux/Mac)
 
-Compactifier.exe /path/to/file 1 (Windows)
+Compactifier.exe /path/to/file (Windows)
 ```
+Compactifier arguments include
+* -f (file path)
+* -c (compaction level)
+* -o (output file path)
+* -d (debug mode)
+* -l (language)
 
 ## Contributing
 Contributions of all types are welcome and encouraged. You can help fix bugs, optimize existing code, add good practices and more. Just open a pull request saying what you have changed or fixed and I will look into it.
