@@ -62,6 +62,11 @@ void pyFormat(std::vector<std::string> &fileContents) {
 				return;
 			}
 		}
+		for (size_t i = 0; i < fileContents.size(); i++) {
+			for (int j = spacesVec[i] / indentation; j > 0; j--) {
+				fileContents[i].replace((indentation * j)-indentation, indentation, "\t");
+			}
+		}
 	}
 
 	// replace spaces with tabs
