@@ -33,7 +33,7 @@ int fileSize(std::string file) {
 
 void writeFile(std::string file, std::vector<std::string>& contents) {
     std::ofstream in(file);
-    for (int i = 0; i < contents.size(); i++) {
+    for (size_t i = 0; i < contents.size(); i++) {
         in << contents[i] << std::endl;
     }
     in.close();

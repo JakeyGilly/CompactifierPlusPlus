@@ -9,7 +9,7 @@
 std::vector<std::pair<std::string, std::string>> pharseConfig() {
     std::vector<std::string> fileContents = readFile(CONFIG_FILE);
     std::vector<std::pair<std::string, std::string>> config;
-    for (int i = 0; i < fileContents.size(); i++) {
+    for (size_t i = 0; i < fileContents.size(); i++) {
         if (fileContents[i][0] == '#') continue; // comments
         if (fileContents[i][0] == '\n') continue; // empty lines
         if (fileContents[i][0] == '\r') continue; // empty lines
@@ -22,7 +22,7 @@ std::vector<std::pair<std::string, std::string>> pharseConfig() {
     std::cout << "Config file loaded" << std::endl;
     // print keys loaded
     std::string keys;
-    for (int i = 0; i < config.size(); i++) {
+    for (size_t i = 0; i < config.size(); i++) {
         keys += config[i].first + ", ";
     }
     std::cout << "Loaded Keys: " << keys << std::endl;
@@ -31,7 +31,7 @@ std::vector<std::pair<std::string, std::string>> pharseConfig() {
 
 bool checkKey(std::string key) {
     std::vector<std::pair<std::string, std::string>> config = pharseConfig();
-    for (int i = 0; i < config.size(); i++) {
+    for (size_t i = 0; i < config.size(); i++) {
         if (config[i].first == key) return true;
     }
     return false;
@@ -39,7 +39,7 @@ bool checkKey(std::string key) {
 
 std::string getValue(std::string key) {
     std::vector<std::pair<std::string, std::string>> config = pharseConfig();
-    for (int i = 0; i < config.size(); i++) {
+    for (size_t i = 0; i < config.size(); i++) {
         if (config[i].first == key) return config[i].second;
     }
     return "";
