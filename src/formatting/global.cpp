@@ -29,3 +29,42 @@ void removeMultiAnn(std::vector<std::string> &fileContents, std::string ann) {
         }
     }
 }
+
+void removeEmptyLines(std::vector<std::string> &fileContents) {
+    for (int i = 0; i < fileContents.size(); i++) {
+		if (fileContents[i].empty()) {
+			fileContents.erase(fileContents.begin() + i);
+			i--;
+		}
+	}
+}
+
+void replaceWinNewLines(std::vector<std::string> &fileContents) {
+    for (int i = 0; i < fileContents.size(); i++) {
+		fileContents[i].erase(std::remove(fileContents[i].begin(), fileContents[i].end(), '\r'), fileContents[i].end());
+	}
+}
+
+void removeBlankLines(std::vector<std::string> &fileContents) {
+    bool removeline = true;
+	for (int i = 0; i < fileContents.size(); i++) {
+		for (int j = 0; j < fileContents[i].length(); j++) if (fileContents[i][j] != ' ' && fileContents[i][j] != '\t') removeline = false;
+		if (removeline) {
+			fileContents.erase(fileContents.begin() + i);
+			i--;
+		}
+		removeline = true;
+	}
+}
+
+std::pair<bool,bool> isSpaced(std::vector<std::string> &fileContents) {
+    bool isSpaced = false;
+	bool error = false;
+	for (int i = 0; i < fileContents.size(); i++) {
+		if (fileContents[i].find(":") != -1) {
+			if (fileContents[i+1][0] == ' ') isSpaced = true;
+            else if (fileContents[i+1][0] != '\t') error = true;
+		}
+	}
+    return std::pair<bool, bool>(isSpaced, error);
+}

@@ -15,41 +15,58 @@ void pyRemoveAnnatations(std::vector<std::string> &fileContents) {
 
 void pyFormat(std::vector<std::string> &fileContents) {
 	std::cout << "Formatting Python" << std::endl;
-	// replace \r\n with \n
-	for (int i = 0; i < fileContents.size(); i++) {
-		fileContents[i].erase(std::remove(fileContents[i].begin(), fileContents[i].end(), '\r'), fileContents[i].end());
-	}
-	// remove empty lines
-	for (int i = 0; i < fileContents.size(); i++) {
-		if (fileContents[i].empty()) {
-			fileContents.erase(fileContents.begin() + i);
-			i--;
+	replaceWinNewLines(fileContents);
+	removeEmptyLines(fileContents);
+	removeBlankLines(fileContents);
+	if (std::get<1>(isSpaced(fileContents))) return; // if indent error
+	if (std::get<0>(isSpaced(fileContents))) { // if spaced
+		int spaces;
+		std::vector<int> spacesVec;
+		int indentation = 0;
+		std::cout << "Detected spaced indentation" << std::endl;
+		for (int i = 0; i < fileContents.size(); i++) {
+			spaces = 0;
+			for (int j = 0; j < fileContents[i].length(); j++) {
+				if (fileContents[i][j] == ' ') while (fileContents[i][j] == ' ') {
+					spaces++;
+					j++;
+				}
+				if (fileContents[i][j] != ' ' && fileContents[i][j] != '\t') break;
+			}
+			spacesVec.push_back(spaces);
+		}
+		for (int i = 0; i < spacesVec.size(); i++) {
+			if (spacesVec[i] > 0) {
+				// get max spaces from config
+				for (int j = 12; j > 1; j--) {
+					if (spacesVec[i] % j == 0) {
+						indentation = j;
+						break;
+					}
+				}
+				break;
+			}
+		}
+		std::cout << "We detected your indentation as " << indentation << " spaces" << std::endl;
+		std::cout << "Is this correct? (y/n): ";
+		std::string input;
+		std::cin >> input;
+		if (input == "n") {
+			std::cout << "Please enter the correct indentation" << std::endl;
+			std::cin >> indentation;
+		}
+		// check manually because i dont trust the user
+		for (int i = 0; i < spacesVec.size(); i++) {
+			if (spacesVec[i] % indentation != 0) {
+				std::cout << "Indentation error" << std::endl;
+				return;
+			}
 		}
 	}
-	// remove newlines at the end of the file and at the beginning of the file
-	if (fileContents.size() > 0) {
-		if (fileContents[0].empty()) {
-			fileContents.erase(fileContents.begin());
-		}
-		if (fileContents[fileContents.size() - 1].empty()) {
-			fileContents.erase(fileContents.end() - 1);
-		}
-	}
-	bool removeline = true;
-	for (int i = 0; i < fileContents.size(); i++) {
-		for (int j = 0; j < fileContents[i].length(); j++) {
-			if (fileContents[i][j] != ' ' && fileContents[i][j] != '\t') {
-				removeline = false;
-			} 
-		}
-		if (removeline) {
-			fileContents.erase(fileContents.begin() + i);
-			i--;
-		}
-		removeline = true;
-	}
-	// // remove multiple spaces after text and before newline
-	// // remove blank lines
+
+	// replace spaces with tabs
+	// remove multiple spaces after text and before newline
+	// remove blank lines
 	// while ((pos=fileContents.find("\n\n", 0)) != -1) { fileContents.erase(pos, 1); }
-	// // remove space around operators > < = ! () [] {} , : ? | &
+	// remove space around operators > < = ! () [] {} , : ? | &
 }

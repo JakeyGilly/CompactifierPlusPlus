@@ -13,18 +13,30 @@ This project was inteded to be made in The C Language but I decided to switch to
 This project is still in development and I am working on it.
 
 ## Usage
-You can clone this repository using ```git clone https://github.com/JakeyGilly/CompactifierPlusPlus.git``` or grab a release from the releases tab.
+You can clone this repository using ```$ git clone https://github.com/JakeyGilly/CompactifierPlusPlus.git``` or grab a release from the releases tab.
 
-Build the project using ```make```.
+Build the project using 
+```
+$ make
+```
 
 Next you execute the Compactifier with the file needed to compact and the compact level as the parameters using 
 ```
-./Compactifier.out /path/to/file 1 (Linux/Mac)
+$ ./Compactifier.out -f /path/to/file (Linux/Mac)
 
-Compactifier.exe /path/to/file 1 (Windows)
+$ Compactifier.exe -f /path/to/file (Windows)
 ```
+Compactifier arguments include
+* -f (file path)
+* -c (compaction level)
+* -o (output file path)
+* -d (debug mode)
+* -l (language)
 
-Made by Jake Gillman
+## Contributing
+Contributions of all types are welcome and encouraged. You can help fix bugs, optimize existing code, add good practices and more. Just open a pull request saying what you have changed or fixed and I will look into it.
+Look at the CodeCompactor project board or the future Todo section below to find what would help me.
+
 
 ## Future Todo
 ### Stages
@@ -38,3 +50,6 @@ You can find out more about the stages [here](http://github.com/JakeyGilly/Compa
 ### Features
 * Compact Formatting
 * Debug Mode
+
+
+Made by Jake Gillman
