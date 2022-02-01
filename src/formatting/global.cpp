@@ -2,7 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <tuple>
 #include "../headers/formatting.hpp"
+#include "../headers/config.hpp"
 
 void removeSingleAnn(std::vector<std::string> &fileContents, std::string ann) {
     for (size_t i = 0; i < fileContents.size(); i++) {
@@ -68,4 +70,44 @@ std::pair<bool,bool> isSpaced(std::vector<std::string> &fileContents) {
 		}
 	}
     return std::pair<bool, bool>(isSpaced, error);
+}
+
+// i know this isnt the prettiest code but it works
+// you may improve it if you want
+std::tuple<std::vector<int>, int, int> detectIndentation(std::vector<std::string> &fileContents) {
+    int spaces;
+    std::vector<int> spacesVec;
+    int indentation = 0;
+    for (size_t i = 0; i < fileContents.size(); i++) {
+        spaces = 0;
+        for (size_t j = 0; j < fileContents[i].length(); j++) {
+            if (fileContents[i][j] == ' ') while (fileContents[i][j] == ' ') {
+                spaces++;
+                j++;
+            }
+            if (fileContents[i][j] != ' ' && fileContents[i][j] != '\t') break;
+        }
+        spacesVec.push_back(spaces);
+    }
+    for (size_t i = 0; i < spacesVec.size(); i++) {
+        if (spacesVec[i] > 0) {
+            for (int j = std::stoi(getValue("MAX_INDENT_SPACE")); j > 1; j--) {
+                if (spacesVec[i] % j == 0) {
+                    indentation = j;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    for (size_t i = 0; i < spacesVec.size(); i++) if (spacesVec[i] % indentation != 0) {return std::tuple<std::vector<int>, int, int>(spacesVec, indentation, 1);}
+    return std::tuple<std::vector<int>, int, int>(spacesVec, indentation, 0);
+}
+
+void replaceIndentation(std::vector<std::string> &fileContents, std::vector<int> &spacesVec, int indentation) {
+    for (size_t i = 0; i < fileContents.size(); i++) {
+        for (int j = spacesVec[i] / indentation; j > 0; j--) {
+            fileContents[i].replace((indentation * j)-indentation, indentation, "\t");
+        }
+    }
 }

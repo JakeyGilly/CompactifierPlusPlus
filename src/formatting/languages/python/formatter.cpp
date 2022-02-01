@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <tuple>
 #include "../../../headers/formatting.hpp"
 #include "../../../headers/config.hpp"
 
@@ -19,60 +20,14 @@ void pyFormat(std::vector<std::string> &fileContents) {
 	replaceWinNewLines(fileContents);
 	removeEmptyLines(fileContents);
 	removeBlankLines(fileContents);
-	if (std::get<1>(isSpaced(fileContents))) return; // if indent error
-	if (std::get<0>(isSpaced(fileContents))) { // if spaced
-		int spaces;
-		std::vector<int> spacesVec;
-		int indentation = 0;
-		std::cout << "Detected spaced indentation" << std::endl;
-		for (size_t i = 0; i < fileContents.size(); i++) {
-			spaces = 0;
-			for (size_t j = 0; j < fileContents[i].length(); j++) {
-				if (fileContents[i][j] == ' ') while (fileContents[i][j] == ' ') {
-					spaces++;
-					j++;
-				}
-				if (fileContents[i][j] != ' ' && fileContents[i][j] != '\t') break;
-			}
-			spacesVec.push_back(spaces);
-		}
-		for (size_t i = 0; i < spacesVec.size(); i++) {
-			if (spacesVec[i] > 0) {
-				for (int j = stoi(getValue("MAX_INDENT_SPACE")); j > 1; j--) {
-					if (spacesVec[i] % j == 0) {
-						indentation = j;
-						break;
-					}
-				}
-				break;
-			}
-		}
-		std::cout << "We detected your indentation as " << indentation << " spaces" << std::endl;
-		std::cout << "Is this correct? (y/n): ";
-		std::string input;
-		std::cin >> input;
-		if (input == "n") {
-			std::cout << "Please enter the correct indentation" << std::endl;
-			std::cin >> indentation;
-		}
-		// check manually because i dont trust the user
-		for (size_t i = 0; i < spacesVec.size(); i++) {
-			if (spacesVec[i] % indentation != 0) {
-				std::cout << "Indentation error" << std::endl;
-				return;
-			}
-		}
-		for (size_t i = 0; i < fileContents.size(); i++) {
-			for (int j = spacesVec[i] / indentation; j > 0; j--) {
-				fileContents[i].replace((indentation * j)-indentation, indentation, "\t");
-			}
-		}
+	std::pair<bool, bool> space = isSpaced(fileContents);
+	if (std::get<1>(space)) return; // if indent error
+	if (std::get<0>(space)) { // if spaced
+		std::tuple<std::vector<int>,int,int> indent = detectIndentation(fileContents); // spacevec, indent
+		if (std::get<2>(indent) == -1) return; // if indent error
+		replaceIndentation(fileContents, std::get<0>(indent), std::get<1>(indent));
 	}
-
-	// replace spaces with tabs
 	// check each module succeeds
 	// remove multiple spaces after text and before newline
-	// remove blank lines
-	// while ((pos=fileContents.find("\n\n", 0)) != -1) { fileContents.erase(pos, 1); }
 	// remove space around operators > < = ! () [] {} , : ? | &
 }
