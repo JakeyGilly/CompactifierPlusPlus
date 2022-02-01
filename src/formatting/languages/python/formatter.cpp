@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include "../../../headers/formatting.hpp"
+#include "../../../headers/config.hpp"
 
 #define PYTHON_ANNATATION "#"  // Single line comment
 #define PYTHON_ML_ANNATATION "\"\"\"" // Multi line comment
@@ -37,8 +38,7 @@ void pyFormat(std::vector<std::string> &fileContents) {
 		}
 		for (int i = 0; i < spacesVec.size(); i++) {
 			if (spacesVec[i] > 0) {
-				// get max spaces from config
-				for (int j = 12; j > 1; j--) {
+				for (int j = stoi(getValue("MAX_INDENT_SPACE")); j > 1; j--) {
 					if (spacesVec[i] % j == 0) {
 						indentation = j;
 						break;
@@ -65,6 +65,7 @@ void pyFormat(std::vector<std::string> &fileContents) {
 	}
 
 	// replace spaces with tabs
+	// check each module succeeds
 	// remove multiple spaces after text and before newline
 	// remove blank lines
 	// while ((pos=fileContents.find("\n\n", 0)) != -1) { fileContents.erase(pos, 1); }
