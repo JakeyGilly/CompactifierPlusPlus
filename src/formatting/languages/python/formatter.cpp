@@ -27,7 +27,6 @@ void pyFormat(std::vector<std::string> &fileContents) {
 		if (std::get<2>(indent) == -1) return; // if indent error
 		replaceIndentation(fileContents, std::get<0>(indent), std::get<1>(indent));
 	}
-	// check each module succeeds
 	// remove multiple spaces after text and before newline
 	// remove space around operators > < = ! () [] {} , : ? | &
 }
