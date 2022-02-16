@@ -6,7 +6,7 @@ endif
 
 SOURCE	= src/main.cpp src/fileio.cpp src/formatting/global.cpp src/formatting/languages/python/formatter.cpp src/config.cpp
 HEADER	= headers/fileio.hpp headers/formatting.hpp headers/config.hpp
-CC	 	= g++-11
+CC	 	= g++
 FLAGS	= -Wall -std=c++17 -g
 
 all: $(OBJS)
