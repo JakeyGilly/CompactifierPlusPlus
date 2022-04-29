@@ -51,8 +51,8 @@ int main(int argc, char* argv[]) {
             pyFormat(fileContents);
         } else if (lang == C) {
             extention = C;
-            // cRemoveAnnatations(fileContents);
-            // cFormat(fileContents);
+            cRemoveAnnatations(fileContents);
+            cFormat(fileContents);
         } else if (lang == CPP) {
             extention = CPP;
             // cppRemoveAnnatations(fileContents);
