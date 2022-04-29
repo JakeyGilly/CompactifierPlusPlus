@@ -13,18 +13,18 @@ void removeSingleAnn(std::vector<std::string> &fileContents, std::string ann) {
         }
     }
 }
-void removeMultiAnn(std::vector<std::string> &fileContents, std::string ann) {
+void removeMultiAnn(std::vector<std::string> &fileContents, std::string ann, std::string annEnd) {
     for (int i = 0; i < fileContents.size(); i++) {
         int pos, pos2;
         if ((pos=fileContents[i].find(ann)) != (int)-1) {
-            if ((pos2=fileContents[i].find(ann, pos+1)) != (int)-1) {
-                fileContents[i] = fileContents[i].substr(0, pos) + fileContents[i].substr(pos2+ann.size());
+            if ((pos2=fileContents[i].find(annEnd, pos+1)) != (int)-1) {
+                fileContents[i] = fileContents[i].substr(0, pos) + fileContents[i].substr(pos2+annEnd.size());
             } else {
                 fileContents[i] = fileContents[i].substr(0, pos);
                 // find pos2 on next line
                 for (int j = i+1; j < fileContents.size(); j++) {
-                    if ((pos2=fileContents[j].find(ann)) != (int)-1) {
-                        fileContents[j] = fileContents[j].substr(pos2+ann.size());
+                    if ((pos2=fileContents[j].find(annEnd)) != (int)-1) {
+                        fileContents[j] = fileContents[j].substr(pos2+annEnd.size());
                     } else {
                         // shift all lines down
                         for (int k = j; k < fileContents.size(); k++) {

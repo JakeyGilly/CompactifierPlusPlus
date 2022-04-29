@@ -6,18 +6,18 @@
 #include "../../../headers/formatting.hpp"
 #include "../../../headers/config.hpp"
 
-#define PYTHON_ANNATATION "#"  // Single line comment
-#define PYTHON_ML_ANNATATION "\"\"\"" // Multi line comment
-#define PYTHON_ML_ANNATATION_END "\"\"\"" // Multi line comment
+#define C_ANNATATION "//"  // Single line comment
+#define C_ML_ANNATATION "/*" // Multi line comment
+#define C_ML_ANNATATION_END "*/" // Multi line comment
 
 
-void pyRemoveAnnatations(std::vector<std::string> &fileContents) {
-	removeSingleAnn(fileContents, PYTHON_ANNATATION);
-	removeMultiAnn(fileContents, PYTHON_ML_ANNATATION, PYTHON_ML_ANNATATION_END);
+void cRemoveAnnatations(std::vector<std::string> &fileContents) {
+	removeSingleAnn(fileContents, C_ANNATATION);
+	removeMultiAnn(fileContents, C_ML_ANNATATION, C_ML_ANNATATION_END);
 }
 
-void pyFormat(std::vector<std::string> &fileContents) {
-	std::cout << "Formatting Python" << std::endl;
+void cFormat(std::vector<std::string> &fileContents) {
+	std::cout << "Formatting C" << std::endl;
 	replaceWinNewLines(fileContents);
 	removeEmptyLines(fileContents);
 	removeBlankLines(fileContents);
