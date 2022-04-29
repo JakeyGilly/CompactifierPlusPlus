@@ -1,15 +1,17 @@
 #include <filesystem>
 #include <fstream>
-#include <string>
 #include <vector>
 #include <iostream>
+#include <map>
+#include <string>
+#include <sstream>
 
 bool isFileReal(std::string file) {
     return std::filesystem::exists(file);
 }
 
 std::string filetype(std::string file) {
-    return std::filesystem::path(file).extension().string();
+    return std::filesystem::path(file).extension().string().substr(1);
 }
 
 std::vector<std::string> readFile(std::string file) {
