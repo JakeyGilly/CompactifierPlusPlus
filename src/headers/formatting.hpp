@@ -17,3 +17,7 @@ void pyFormat(std::vector<std::string>&);
 // C
 void cRemoveAnnatations(std::vector<std::string>&);
 void cFormat(std::vector<std::string>&);
+
+// C++
+void cppRemoveAnnatations(std::vector<std::string>&);
+void cppFormat(std::vector<std::string>&);

@@ -55,8 +55,8 @@ int main(int argc, char* argv[]) {
             cFormat(fileContents);
         } else if (lang == CPP) {
             extention = CPP;
-            // cppRemoveAnnatations(fileContents);
-            // cppFormat(fileContents);
+            cppRemoveAnnatations(fileContents);
+            cppFormat(fileContents);
         } else {
             std::cout << "File type not supported" << std::endl;
             return 1;
