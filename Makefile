@@ -13,4 +13,4 @@ all: $(OBJS)
 	$(CC) ${SOURCE} -o $(TARGET) ${FLAGS}
 
 clean:
-	rm -rf $(TARGET) output.py Compactifier.out.dSYM/
+	rm -rf $(TARGET) output.py Compactifier.out.dSYM/ output.c output.cpp

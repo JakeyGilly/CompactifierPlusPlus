@@ -9,6 +9,7 @@ void removeBlankLines(std::vector<std::string>&);
 std::pair<bool,bool> isSpaced(std::vector<std::string>&);
 std::tuple<std::vector<int>,int,int> detectIndentation(std::vector<std::string>&);
 void replaceIndentation(std::vector<std::string>&,std::vector<int>&,int);
+void formatCurlyBrackets(std::vector<std::string>&);
 
 // PYTHON
 void pyRemoveAnnatations(std::vector<std::string>&);

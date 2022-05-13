@@ -117,3 +117,44 @@ void replaceIndentation(std::vector<std::string> &fileContents, std::vector<int>
         }
     }
 }
+
+void formatCurlyBrackets(std::vector<std::string> &fileContents) {
+    int pos, pos2;
+    int i1, i2;
+    bool foundend = false;
+    for (int i = 0; i < fileContents.size(); i++) {
+        int x = i;
+        if ((pos=fileContents[i].find("{")) != (int)-1) {
+            i1 = i;
+            while (fileContents[i][pos-1] == ' ' || fileContents[i][pos-1] == '\t') {
+                fileContents[i].erase(pos-1, 1);
+                pos--;
+            }
+            if (fileContents[i] == "{") {
+                for (int j = i; j < fileContents.size(); j++) {
+                    fileContents[j] = fileContents[j+1];
+                }
+                fileContents[i-1].append("{");
+                i1--;
+            }
+            while (!foundend) {
+                if ((pos2=fileContents[i].find("}")) != (int)-1) {
+                    i2 = i;
+                    foundend = true;
+                    while (fileContents[i][pos2-1] == ' ' || fileContents[i][pos2-1] == '\t') {
+                        fileContents[i].erase(pos2-1, 1);
+                        pos2--;
+                    }
+                    std::cout << i2-i1 << std::endl;
+                } else {
+                    i++;
+                }
+            }
+        }
+        i = x;
+        // TODO:
+        // manage statements
+        // statements without curly brackets if one line in manage statements
+    }
+}
+

@@ -3,3 +3,7 @@ Compactifier.out
 Compactifier.out.dSYM/
 *.py
 .vscode/
+output.c
+output.cpp
+test.cpp
+test.c

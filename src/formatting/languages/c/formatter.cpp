@@ -19,6 +19,7 @@ void cRemoveAnnatations(std::vector<std::string> &fileContents) {
 void cFormat(std::vector<std::string> &fileContents) {
 	std::cout << "Formatting C" << std::endl;
 	replaceWinNewLines(fileContents);
+	formatCurlyBrackets(fileContents);
 	removeEmptyLines(fileContents);
 	removeBlankLines(fileContents);
 	std::pair<bool, bool> space = isSpaced(fileContents);

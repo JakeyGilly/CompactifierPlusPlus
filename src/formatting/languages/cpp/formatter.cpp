@@ -19,8 +19,10 @@ void cppRemoveAnnatations(std::vector<std::string> &fileContents) {
 void cppFormat(std::vector<std::string> &fileContents) {
 	std::cout << "Formatting CPP" << std::endl;
 	replaceWinNewLines(fileContents);
+	formatCurlyBrackets(fileContents);
 	removeEmptyLines(fileContents);
 	removeBlankLines(fileContents);
+	
 	std::pair<bool, bool> space = isSpaced(fileContents);
 	if (std::get<1>(space)) return; // if indent error
 	if (std::get<0>(space)) { // if spaced
