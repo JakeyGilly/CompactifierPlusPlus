@@ -137,18 +137,31 @@ void formatCurlyBrackets(std::vector<std::string> &fileContents) {
                 fileContents[i-1].append("{");
                 i1--;
             }
-            while (!foundend) {
+            while (true) {
                 if ((pos2=fileContents[i].find("}")) != (int)-1) {
                     i2 = i;
-                    foundend = true;
-                    while (fileContents[i][pos2-1] == ' ' || fileContents[i][pos2-1] == '\t') {
-                        fileContents[i].erase(pos2-1, 1);
-                        pos2--;
-                    }
-                    std::cout << i2-i1 << std::endl;
+                    break;
                 } else {
                     i++;
                 }
+            }
+            while (fileContents[i][pos2-1] == ' ' || fileContents[i][pos2-1] == '\t') {
+                fileContents[i].erase(pos2-1, 1);
+                pos2--;
+            }
+            std::string statementcode;
+            for (int j = i1+1; j < i2; j++) {
+                statementcode.append(fileContents[j]);
+                statementcode.append("\n");
+            }
+            bool erase = true;
+            for (int j = 0; j < statementcode.length(); j++) {
+                std::cout << statementcode[j];
+                if (statementcode[j] != ' ' && statementcode[j] != '\t' && statementcode[j] != '\n') erase = false;
+            }
+            std::cout << "erase: " << erase << std::endl;
+            if (erase) {
+                fileContents.erase(fileContents.begin()+i1, fileContents.begin()+i2+1);
             }
         }
         i = x;
