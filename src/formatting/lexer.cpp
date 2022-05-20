@@ -1,0 +1,48 @@
+enum TokenType {
+    IDENTIFIER,
+
+	//Literals
+	INTEGER,
+	DECIMAL,
+	STRING,
+	BOOL,
+    BYTES,
+
+	//Operators
+	PLUS,
+	MINUS,
+	TIMES,
+	SLASH,
+    MOD,
+    POWER,
+    LOGICAL_AND,
+    LOGICAL_OR,
+	EQUALS,
+	NOT,
+	LESS,
+	GTR,
+	LESSEQUAL,
+	GTREQUAL,
+
+	//Seperators
+	LBRACK,
+	RBRACK,
+	LCURLBRACK,
+	RCURLBRACK,
+	LSQUBRACE,
+	RSQUBRACE,
+	SEMICOLON,
+	COMMA,
+    DOT,
+
+	//Keywords
+	IF,
+	WHILE,
+	FOR,
+	RETURN,
+
+	//Other
+	UNKNOWN,
+    EOL,
+	EOF
+};

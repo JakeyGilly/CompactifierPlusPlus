@@ -4,8 +4,8 @@ else
     TARGET = Compactifier.out
 endif
 
-SOURCE	= src/main.cpp src/fileio.cpp src/config.cpp src/formatting/global.cpp src/formatting/languages/python/formatter.cpp src/formatting/languages/c/formatter.cpp src/formatting/languages/cpp/formatter.cpp
-HEADER	= headers/fileio.hpp headers/formatting.hpp headers/config.hpp
+SOURCE	= src/main.cpp src/fileio.cpp src/config.cpp src/formatting/lexer.cpp src/formatting/tokeniser.cpp
+HEADER	= headers/fileio.hpp headers/formatting.hpp headers/config.hpp headers/tokeniser.hpp
 CC	 	= g++
 FLAGS	= -Wall -std=c++17 -g
 

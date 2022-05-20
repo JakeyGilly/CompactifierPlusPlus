@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
-#include "headers/formatting.hpp"
+#include "headers/tokeniser.hpp"
 #include "headers/fileio.hpp"
 
 
@@ -47,7 +47,10 @@ int main(int argc, char* argv[]) {
         std::string lang = filetype(file);
         if (lang == PYTHON) {
             extention = PYTHON;
-            
+            std::vector<std::string> tokens = tokenise("the quick brown fox jumps over the lazy dog");
+            for (auto token : tokens) {
+                std::cout << token << std::endl;
+            }
         } else if (lang == C) {
             extention = C;
         } else if (lang == CPP) {
