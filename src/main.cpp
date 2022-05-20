@@ -47,16 +47,11 @@ int main(int argc, char* argv[]) {
         std::string lang = filetype(file);
         if (lang == PYTHON) {
             extention = PYTHON;
-            pyRemoveAnnatations(fileContents);
-            pyFormat(fileContents);
+            
         } else if (lang == C) {
             extention = C;
-            cRemoveAnnatations(fileContents);
-            cFormat(fileContents);
         } else if (lang == CPP) {
             extention = CPP;
-            cppRemoveAnnatations(fileContents);
-            cppFormat(fileContents);
         } else {
             std::cout << "File type not supported" << std::endl;
             return 1;
